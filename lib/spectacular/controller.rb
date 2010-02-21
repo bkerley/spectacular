@@ -4,6 +4,8 @@ module Spectacular
       @method = method
       @path = path
       @params = Rack::Utils.parse_query(environment['QUERY_STRING'])
+      @posted = Rack::Utils.parse_query(environment['rack.input'].read)
+      @environment = environment
     end
     def response
       send @method
