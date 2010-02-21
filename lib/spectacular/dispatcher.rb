@@ -7,8 +7,8 @@ module Spectacular
 
     def dispatch(method, path, environment)
       matched_path, controller, method = get_route path
-
-      controller.response_for method
+      controller_instance = controller.new
+      controller_instance.response_for method
     end
 
     private
