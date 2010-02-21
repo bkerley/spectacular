@@ -3,6 +3,7 @@ require 'test/unit'
 require 'rack/test'
 require 'mocha'
 require 'shoulda'
+require 'assert_repeated'
 
 require File.join(File.dirname(__FILE__), '../lib/spectacular.rb')
 
