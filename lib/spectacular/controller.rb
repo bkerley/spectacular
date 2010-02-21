@@ -1,7 +1,11 @@
 module Spectacular
   class Controller
-    def response_for(method)
+    def initialize(method, path, environment)
       @method = method
+      @path = path
+      @params = Rack::Utils.parse_query(environment['QUERY_STRING'])
+    end
+    def response
       send @method
       [response_code, headers, body]
     end
@@ -19,7 +23,7 @@ module Spectacular
       return @body if defined? @body
       template = File.read template_file
       engine = Haml::Engine.new template
-      @body = engine.render
+      @body = engine.render binding
     end
 
     def template_file

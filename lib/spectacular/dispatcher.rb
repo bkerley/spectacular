@@ -7,8 +7,8 @@ module Spectacular
 
     def dispatch(method, path, environment)
       matched_path, controller, method = get_route path
-      controller_instance = controller.new
-      controller_instance.response_for method
+      controller_instance = controller.new(method, path, environment)
+      controller_instance.response
     end
 
     private
@@ -26,7 +26,7 @@ module Spectacular
     end
 
     def get_route(path)
-      @routes.detect{ |r| path === r[0] }
+      @routes.detect{ |r| r[0] === path }
     end
 
     class RoutePen
