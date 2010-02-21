@@ -1,5 +1,3 @@
-class Spectacular
-  def call(environment)
-    [ 200, { 'Content-type' => 'text/plain'}, 'hello world']
-  end
+%w{ dispatcher controller app }.each do |f|
+  require File.join(File.dirname(__FILE__), "spectacular/#{f}.rb")
 end

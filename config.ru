@@ -1,4 +1,4 @@
 require 'lib/spectacular.rb'
 use Rack::ContentLength
 
-run(Spectacular.new)
+run(Spectacular::App.new)
